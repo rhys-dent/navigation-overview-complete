@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://w47y7xjl6nif"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_yo01a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ltm0h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cdv7"]
+shading_mode = 0
+diffuse_mode = 1
+specular_mode = 2
+disable_ambient_light = true
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8qttr"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_yo01a")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ltm0h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_7cdv7")
+mesh = SubResource("CapsuleMesh_8qttr")
